@@ -1,3 +1,4 @@
+<img width="950" height="413" alt="Screenshot 2026-10-30 202648" src="https://github.com/user-attachments/assets/23ec0e7d-e2d2-4909-9123-45ad21fc6414" />
 # CinePulse — Movie Explorer & Studio Dashboard
 
 ## 1. Your Mission: Investigate & Fix the Bugs
