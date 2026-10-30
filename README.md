@@ -1,56 +1,142 @@
 # CinePulse — Movie Explorer & Studio Dashboard
 
-CinePulse is an interactive movie discovery and curation dashboard built for film enthusiasts and studio catalog managers. It allows users to browse an offline cinema vault, apply multi-criteria filtering (by genre, rating, and release era), inspect film synopses, and curate a personal watchlist.
+## 1. Your Mission: Investigate & Fix the Bugs
+
+You are a **Full-Stack Developer** working on CinePulse, a movie discovery and studio management application. The QA team has identified several issues affecting the application's core functionality, including catalog filtering, pagination, watchlist management, and asynchronous search operations. Your responsibility is to investigate the existing codebase, trace each issue to its root cause, and implement reliable fixes while ensuring the application's existing functionality remains intact.
+
+The following issues have been reported:
+
+**BUG-01: Missing Movies at the Year Boundary**
+
+The release year filter is excluding movies released in the maximum year selected. For example, selecting 2020–2024 fails to display some 2024 releases, including *Dune: Part Two* and *Challengers*.
+
+**Your task:** Fix the year filtering logic to ensure both the minimum and maximum selected years are included.
+
+**BUG-02: Incorrect Pagination Results**
+
+The catalog is configured to display 6 movies per page, but only 5 are appearing. Additionally, the final movie in each page segment is being skipped during navigation.
+
+**Your task:** Correct the pagination and array slicing logic to ensure every page displays the expected number of movies without skipping entries.
+
+**BUG-03: Watchlist Removes the Wrong Movie**
+
+When users remove a movie from their watchlist, the selected movie remains while another movie, typically the last entry, disappears instead.
+
+**Your task:** Fix the removal logic so that the movie matching the selected ID is removed accurately.
+
+**BUG-04: Search Gets Stuck After Failed Requests**
+
+When an asynchronous search request fails due to a timeout or unexpected error, the application displays an error alert but remains stuck in the loading state. The search input stays disabled, preventing users from performing new searches.
+
+**Your task:** Ensure the loading state is properly reset after both successful and failed requests, allowing users to continue searching.
 
 ---
 
-## 1. Application Overview
+## 2. Get Familiar With the Application
 
-### Core Functionality
-- **Dynamic Catalog Browsing**: View top-rated films with rich visual metadata, genres, and ratings.
-- **Multi-Dimensional Filtering & Sorting**: Filter by release year range, minimum rating threshold, and genre categories; sort by rating or release date.
-- **Interactive Watchlist**: Save and remove films to/from a personal drawer with real-time badge count updates and offline persistence.
-- **Fast Search**: Search by title or director with debounced asynchronous query simulation.
-- **Paginated Navigation**: Clean page partitioning to smoothly navigate large catalogs.
+Before making any changes, explore CinePulse and understand how its different components interact.
 
-### Technology Stack
-- **Framework**: React 18
-- **Build Tool / Dev Server**: Vite 5
-- **Styling**: Vanilla CSS (CSS custom properties, glassmorphism, responsive grid, dark mode)
-- **Testing**: Vitest, React Testing Library, jsdom
-- **Data**: Bundled local JSON dataset (`data/movies.json`)
+CinePulse is an interactive movie discovery and curation dashboard designed for film enthusiasts and studio catalog managers.
 
----
+**What the application offers:**
 
-## 2. Debugging Challenge
+- **Movie Discovery:** Browse a catalog of highly rated movies with posters, genres, ratings, and descriptions.
+- **Advanced Filtering:** Filter movies by genre, release year, and minimum rating.
+- **Sorting:** Organize movies by rating or release date.
+- **Personal Watchlist:** Save and remove movies with persistent offline storage.
+- **Instant Search:** Search movies by title or director using debounced asynchronous queries.
+- **Pagination:** Navigate through the movie catalog using structured page navigation.
 
-QA engineers and early users have flagged several issues in the CinePulse studio platform. Your goal is to investigate the codebase, reproduce each bug, and implement the necessary fixes so that all automated test suites pass.
+**Technology Stack**
 
-### Reported Issues & Tasks:
+- React 18
+- Vite 5
+- Vanilla CSS
+- Vitest
+- React Testing Library
+- jsdom
+- Local JSON dataset (`data/movies.json`)
 
-#### Issue 1: Boundary Year Movies Missing From Filtered Catalog
-- **User Symptom**: Users selecting a release year range (e.g., 2020 to 2024) report that new releases from the selected end year (such as 2024 films like *Dune: Part Two* and *Challengers*) fail to appear in the results.
-- **Task**: Ensure that the release year filter includes films released in the maximum boundary year selected by the user.
+**Live Application Preview**
 
-#### Issue 2: Pagination Omits the Final Film on Each Page
-- **User Symptom**: The catalog is configured to display 6 films per page, but users notice only 5 films show up on full pages, and the final movie in each block of items is skipped when moving between pages.
-- **Task**: Correct the page slicing calculation so that every page displays the configured number of items and no catalog items are skipped during page transitions.
 
-#### Issue 3: Removing a Movie From Watchlist Deletes the Wrong Entry
-- **User Symptom**: When a user opens their Watchlist and clicks "Remove" on a specific film (for example, the first item in the list), the clicked film remains in the list, but whichever movie is at the bottom of the list is deleted instead!
-- **Task**: Fix the watchlist removal logic so that removing an item by its ID accurately removes that exact film without deleting other entries.
 
-#### Issue 4: Search Bar Freezes in "Loading..." State After a Failed Query
-- **User Symptom**: If an unexpected network timeout or error occurs during an asynchronous search query, an error alert appears, but the search input remains disabled and the spinning loading indicator never disappears, blocking subsequent searches.
-- **Task**: Ensure the search state properly clears the loading state even when an error or rejection occurs.
+[INSERT SCREENSHOT: Movie Catalog with Filters and Search]
+
+[INSERT SCREENSHOT: Watchlist Drawer]
 
 ---
 
-## 3. Expected Behavior After Fixing Bugs
+## 3. Expected Behaviour After Fixing the Bugs
 
-After resolving the issues:
-1. Setting the year filter to 2024 includes all 2024 movies up to and including that year.
-2. Each pagination page accurately displays up to 6 films, and navigating consecutive pages displays all movies without gaps.
-3. Clicking "Remove" on any film in the Watchlist drawer reliably removes only that specific film.
-4. When a search fails, the loading spinner stops and the user is able to perform subsequent searches immediately.
-5. All automated tests in `tests/` pass with exit code `0`.
+Once you have investigated and resolved all reported issues, CinePulse should behave as expected:
+
+1. **Year Filtering:** Selecting 2020–2024 must include movies released in both 2020 and 2024.
+2. **Pagination:** Every page must display up to 6 movies, with no missing or duplicated entries between pages.
+3. **Watchlist:** Removing a movie must delete only the selected movie, identified by its unique ID.
+4. **Search Recovery:** Failed search requests must reset the loading state and allow subsequent searches.
+5. **Application Stability:** All existing functionality must continue working without regressions.
+
+---
+
+## 4. Your Workspace & Available Tools
+
+You have access to a fully functional development workspace with the complete CinePulse source code, an integrated terminal, a live application preview, and an AI-powered coding assistant.
+
+**Here's what you can do in your workspace:**
+
+- **Explore the Codebase:** Navigate through the project files, inspect components, understand application logic, and identify where bugs originate.
+- **Integrated Terminal:** Execute commands, install dependencies, start the development server, run tests, and inspect build errors.
+- **Live Application Preview:** View CinePulse running in real time and verify whether your changes produce the expected behaviour.
+- **AI Assistant:** Ask questions, understand unfamiliar code, investigate errors, and receive debugging guidance. Use it as a guide, not as a replacement for your own problem-solving.
+- **Code Editing:** Modify existing files, refactor logic, and implement fixes directly within the workspace.
+- **Test Execution:** Run automated test suites to validate your implementation and identify remaining issues.
+
+**Useful Terminal Commands**
+
+You can use the integrated terminal to execute commands such as:
+
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start the development server |
+| `npm test` | Execute automated tests (if configured) |
+
+Check the project's `package.json` before executing commands to understand the available scripts.
+
+**Hard Reset — Use Carefully**
+
+The workspace includes a Hard Reset option that restores the challenge environment to its original state.
+
+- You are allowed a maximum of **2 Hard Reset activations**.
+- A minimum cooldown of **10 minutes** applies between consecutive activations.
+- A reset discards your current code changes and restores the original challenge files.
+- Use this option only when you genuinely need to restart your implementation.
+
+**Remember:** Your objective is to understand the existing application and fix its underlying issues, not rebuild it from scratch.
+
+---
+
+## 5. Testing, Evaluation & Submission
+
+Fixing the code is only half the job. You must verify that your implementation actually works.
+
+**Before submitting:**
+
+1. Reproduce the reported issues and understand their root causes.
+2. Implement the necessary fixes in the existing codebase.
+3. Run the available automated tests through the integrated terminal.
+4. Check the live application preview to verify that the affected features work correctly.
+5. Ensure your changes have not introduced regressions in existing functionality.
+
+**Evaluation Criteria**
+
+Your submission will be evaluated against automated test cases, including hidden test cases that are not visible during development.
+
+- All four reported issues must be resolved.
+- Both visible and hidden test cases must pass.
+- Existing application functionality must remain intact.
+- The application must build and execute successfully.
+
+Once you are satisfied with your implementation, submit your solution through DEBUG//LAB.
+
+**Your final score will reflect the correctness of your fixes and the results of the automated evaluation.**
