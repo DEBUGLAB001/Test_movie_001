@@ -1,3 +1,4 @@
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -7,11 +8,13 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 3000,
-    strictPort: true
+    strictPort: true,
+    allowedHosts: true
   },
   preview: {
     host: '0.0.0.0',
-    port: 3000
+    port: 3000,
+    allowedHosts: true
   },
   test: {
     globals: true,
