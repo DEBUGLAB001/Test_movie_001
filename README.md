@@ -1,4 +1,3 @@
-<img width="950" height="413" alt="Screenshot 2026-10-30 202648" src="https://github.com/user-attachments/assets/23ec0e7d-e2d2-4909-9123-45ad21fc6414" />
 # CinePulse — Movie Explorer & Studio Dashboard
 
 ## 1. Your Mission: Investigate & Fix the Bugs
@@ -61,10 +60,14 @@ CinePulse is an interactive movie discovery and curation dashboard designed for 
 **Live Application Preview**
 
 
+<img width="950" height="413" alt="Screenshot 2026-10-30 202648" src="https://github.com/user-attachments/assets/23ec0e7d-e2d2-4909-9123-45ad21fc6414" />
 
-[INSERT SCREENSHOT: Movie Catalog with Filters and Search]
 
-[INSERT SCREENSHOT: Watchlist Drawer]
+<img width="950" height="414" alt="image" src="https://github.com/user-attachments/assets/ff28c8a8-89d3-424f-b307-831a89b792e4" />
+
+
+<img width="949" height="412" alt="image" src="https://github.com/user-attachments/assets/c0e7d325-4f92-474f-88c6-6898fb99a0d7" />
+
 
 ---
 
